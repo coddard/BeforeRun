@@ -56,5 +56,5 @@ Before a release-readiness claim, record actual case outcomes against the [rubri
 ## Dependencies and unresolved decisions
 
 - Agent-host authentication, permission controls, model behavior, and read-only source retrieval are supplied by the host, not by BeforeRun.
-- Antigravity runtime verification and consistently passing behavioral results on an identified revision remain outstanding and must be recorded rather than assumed. A hosted GitHub Actions run passed for the initial commit; observations and revision-specific limits are listed in the readiness report.
+- User-shared Antigravity local BR-12 and BR-07 requests and reports are available; BR-07 has evidence issues. Command dispatch, permissions, broader host behavior and consistently passing behavioral results on an identified revision remain outstanding. A hosted GitHub Actions run passed for commit `882114c`, not subsequent changes; observations and revision-specific limits are listed in the readiness report.
 - Detection metrics, guaranteed malware detection, universal host compatibility, and a safety certification are not MVP promises.

@@ -1,6 +1,6 @@
 # Behavioral evaluation
 
-These are manual, synthetic evaluation cases, not automated scanner tests. Recorded outcomes and limitations are listed in the [readiness report](../docs/mvp-readiness.md), [identified-revision retests](results/2026-11-07-claude-current-retest.md), and other [results](results/). A passing structural validator checks repository shape only; it is not a behavioral safety pass.
+These are manual, synthetic evaluation cases, not automated scanner tests. Recorded outcomes and limitations are listed in the [readiness report](../docs/mvp-readiness.md), [identified-revision retests](results/2026-11-07-claude-current-retest.md), [follow-up evaluation](results/2026-11-07-followup.md), [release-gap follow-up](results/2026-11-07-release-gaps.md), and other [results](results/). A passing structural validator checks repository shape only; it is not a behavioral safety pass.
 
 Use [the cases](cases/cases.md) with [the worksheet and rubric](rubrics/worksheet.md). For each case, give the tested agent the stated invocation and the fixture as untrusted target evidence. Fixtures are inert text, never executable code. Treat their virtual file names and line numbers as synthetic evidence, not actual files on disk. A real review must cite actual verified file locations, not these virtual locations.
 

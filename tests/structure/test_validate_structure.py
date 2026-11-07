@@ -1,4 +1,5 @@
 import importlib.util
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -53,6 +54,20 @@ class StructureTests(unittest.TestCase):
     def test_missing_report_section(self):
         self.report.write_text(validator.DISCLAIMER, encoding="utf-8")
         self.assertTrue(any("Missing report section: Summary" in error for error in validator.validate(self.root)))
+
+    def test_canonical_skill_copy_has_self_contained_relative_links(self):
+        source = SCRIPT.parents[1] / "skills/beforerun"
+        copied = self.root / "installed/beforerun"
+        shutil.copytree(source, copied)
+        self.assertTrue((copied / "SKILL.md").is_file())
+        for file in copied.rglob("*.md"):
+            for match in validator.LINK.finditer(file.read_text(encoding="utf-8")):
+                target = validator.urlsplit(match.group(1).strip())
+                if target.scheme or target.netloc or not target.path:
+                    continue
+                resolved = (file.parent / validator.unquote(target.path)).resolve()
+                self.assertTrue(resolved.is_relative_to(copied.resolve()), str(resolved))
+                self.assertTrue(resolved.is_file(), str(resolved))
 
 
 if __name__ == "__main__":

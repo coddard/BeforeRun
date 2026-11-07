@@ -56,6 +56,8 @@ Describe relevant capabilities and context without treating their mere presence 
 
 Suggest evidence-gathering or risk-reduction steps without asserting safety or automatically executing, installing, or modifying the target.
 
+Do not recommend running the target without further action or imply that a review authorizes execution, even for an inert fixture. A suggested local copy or archive is user-provided evidence, not permission to automatically clone or unpack it.
+
 ## 8. Disclaimer
 
 BeforeRun reports suspicious behavior and supporting evidence. It does not certify code as safe.
