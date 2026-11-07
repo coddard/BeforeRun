@@ -43,7 +43,7 @@ Recorded November 7, 2026, in the development environment. This is a project-rea
 - A process diagnostic inadvertently exposed local Antigravity session tokens in the assistant's tool output. Values are not included in this repository. The user reported fully closing and restarting Antigravity; token revocation on restart was not verified. See the [incident note](../evals/results/2026-11-07-claude-current-retest.md).
 - Antigravity App version 2.29.0 was found in the standard macOS Applications directory; the `antigravity` command was not on PATH. The GUI was not launched or tested, so the app's discovery and invocation of BeforeRun remain unverified.
 - Python 3.14.7 ran the repository structural validator and five unit tests successfully. The validator does not import or execute fixtures. Behavioral observations for all 12 cases have now been recorded across different runs and skill revisions, with failures and unassessed boundaries; this is not a uniformly passing evaluation of the current revision.
-- GitHub Actions configuration exists, but no hosted workflow run was performed. On November 7, `git ls-remote origin` succeeded without returning refs; the local project files are untracked. No publication or repository settings changes were performed.
+- After explicit user authorization, the initial commit `f8c3f34aead6600c1eb03ff4a6fab28a3a19128a` was pushed to the public repository. The November 7 hosted [Validate run](https://github.com/coddard/BeforeRun/actions/runs/42324369934) succeeded: both the structure validator and the five unit tests passed. This run tested that commit, not later revisions. The workflow does not request project secrets; checkout uses read-only contents permission without persisting credentials.
 
 ## Acceptance status
 
@@ -56,7 +56,7 @@ Recorded November 7, 2026, in the development environment. This is a project-rea
 | Evidence and reporting | Earlier BR-12 reviews had incorrect line counts or unsupported behavioral claims. A later BR-12 response separated pseudocode from runtime behavior. BR-01 reported an unrequested byte total and a categorical execution-risk claim. BR-07 retests limited absence claims to scope but continued reporting unrequested line totals. |
 | Coverage and no safety verdict | Required by the skill and report template; the latest BR-12 response disclosed limits, but the BR-01 response made a categorical execution-risk claim despite including the disclaimer. |
 | Platform claims | Claude Code has limited local reviews and successful missing-target responses; an earlier reported failure remains unexplained. A restricted 2.1.319 session reported an unknown skill. One remote attempt was blocked by permission checks; another obtained partial summaries but ended without a report. Antigravity discovery and invocation remain unverified. Both hosts are experimental. |
-| Structural validation | Passed locally with Python 3.14.7; hosted CI has not run. |
+| Structural validation | Passed locally with Python 3.14.7 and in the hosted Validate run for initial commit `f8c3f34`. |
 | Behavioral cases | All 12 cases have observations across different runs and revisions. The [identified-revision retests](../evals/results/2026-11-07-claude-current-retest.md) still contain evidence or reporting failures, a timed-out case, and unassessed boundaries; mocked remote cases do not establish live retrieval behavior. |
 | MVP scope | No analysis engine, target execution service, or automated target installation has been added. |
 
@@ -65,7 +65,7 @@ Recorded November 7, 2026, in the development environment. This is a project-rea
 1. Retest failing cases and reporting requirements against a single identified current skill revision, including source accuracy and exact labels. Record all applicable rubric dimensions; do not execute fixtures or contact example destinations.
 2. Verify remaining host integrations with explicitly authorized authentication and permissions, including Antigravity and a live, authorized remote review. Investigate the earlier unrecorded missing-target failure or restricted authentication discrepancy if sufficient evidence becomes available, without sharing credentials.
 3. If independent evidence of transcript completeness or enforcement is required, establish a separate audit source and appropriate OS isolation; matched event IDs and canary tests alone are insufficient.
-4. Publish the repository only with explicit authorization, then run and inspect the hosted GitHub Actions workflow without granting project secrets to the job.
+4. Inspect the hosted GitHub Actions result for subsequent revisions; do not grant project secrets to the validation job.
 5. Reassess readiness and support labels from actual evidence. Do not equate structure validation with behavioral safety or promise detection coverage.
 
 BeforeRun reports suspicious behavior and supporting evidence. It does not certify code as safe.
